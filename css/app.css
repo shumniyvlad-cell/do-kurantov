@@ -1,7 +1,7 @@
 /* Экран продукта: вопросы, план и счётчик */
 .app { min-height: 100svh; }
 .app-wrap { width: min(860px, calc(100vw - 32px)); margin: 0 auto; }
-.app-top { position: sticky; top: 0; z-index: 30; background: var(--pine); }
+.app-top { position: sticky; top: 0; z-index: 30; background: var(--night); }
 .app-top .app-wrap { display: flex; align-items: center; gap: 22px; height: 64px; }
 .app-prog { flex: 1; display: flex; gap: 6px; }
 .app-prog i { flex: 1; height: 8px; border-radius: 4px; background: var(--pine3); transition: background-color .3s; }
@@ -16,8 +16,8 @@
 .intro .lead { color: var(--ink2); font-size: 20px; margin: 18px 0 26px; max-width: 46ch; }
 .intro ul { list-style: none; margin: 0 0 30px; padding: 0; display: grid; gap: 10px; }
 .intro li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; padding: 16px; background: var(--paper); border-radius: 16px; }
-.intro li .n { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--mand); font: 800 17px/1 var(--display); }
-.intro li b { display: block; font: 800 19px/1.2 var(--display); }
+.intro li .n { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--mand); font: 800 17px/1 var(--head); }
+.intro li b { display: block; font: 800 19px/1.2 var(--head); }
 .intro li span { color: var(--ink2); }
 .intro .row { display: flex; flex-wrap: wrap; gap: 12px; }
 .privacy { display: flex; gap: 10px; align-items: start; color: var(--ink2); font-size: 15px; margin-top: 20px; max-width: 56ch; }
@@ -28,7 +28,7 @@
 .block-head h2 { margin: 6px 0 10px; }
 .block-head p { color: var(--ink2); margin: 0; font-size: 19px; }
 .q { padding: 22px 0; border-top: 1px solid var(--line); }
-.q-text { display: block; font: 700 clamp(20px, 2.3vw, 23px)/1.25 var(--display); letter-spacing: -0.01em; margin: 0 0 6px; }
+.q-text { display: block; font: 700 clamp(20px, 2.3vw, 23px)/1.25 var(--head); letter-spacing: -0.01em; margin: 0 0 6px; }
 .q-hint { color: var(--ink2); margin: 0 0 12px; font-size: 16px; }
 .opts { display: grid; gap: 10px; margin-top: 12px; }
 .opt { text-align: left; padding: 15px 18px; min-height: 56px; border: 2px solid var(--line); border-radius: 16px; background: var(--paper); font-size: 17px; font-weight: 600;
@@ -66,7 +66,7 @@
 .tracker { background: var(--pine); color: var(--on-pine); border-radius: 22px; padding: 24px; margin-bottom: 20px; }
 .tr-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px; align-items: end; }
 .tr-top .mono { color: var(--on-pine2); display: block; }
-.tr-top b { display: block; font: 900 clamp(40px, 6vw, 64px)/1 var(--display); letter-spacing: -0.04em; color: var(--mand); font-variant-numeric: tabular-nums; margin: 6px 0 4px; }
+.tr-top b { display: block; font: 900 clamp(40px, 6vw, 64px)/1 var(--head); letter-spacing: -0.04em; color: var(--mand); font-variant-numeric: tabular-nums; margin: 6px 0 4px; }
 .tr-of { color: var(--on-pine2); font-size: 15px; }
 .tr-bar { height: 10px; border-radius: 99px; background: var(--pine3); margin: 18px 0 6px; overflow: hidden; }
 .tr-bar i { display: block; height: 100%; background: var(--mand); transform-origin: 0 50%; transform: scaleX(0); transition: transform .5s var(--ease); }

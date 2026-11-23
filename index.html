@@ -6,11 +6,12 @@
 <title>Деньги до курантов — Андрей Хард</title>
 <meta name="description" content="7 дней продаж по своей базе до Нового года: тем, кто уже покупал или спрашивал цену. План по дням, готовые тексты, предложение под декабрь и прогноз в рублях. Без рекламы, вебинаров и дожимов.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0F2E24">
+<meta name="theme-color" content="#0B1A15">
 <meta property="og:title" content="Деньги до курантов">
 <meta property="og:description" content="7 дней продаж по своей базе до Нового года. Методика Андрея Харда.">
 <meta property="og:image" content="img/og.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='18' r='13' fill='%23FF7A1A'/%3E%3Cpath d='M16 5c1-3 5-4 7-2-2 0-4 1-5 3' fill='%231F6B4A'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/AlumniSans-normal-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/plan.css">
@@ -28,6 +29,7 @@
 <a class="sr" href="#calc">К бесплатному расчёту базы</a>
 
 <header class="top" id="top">
+  <i class="top-progress" id="progress" aria-hidden="true"></i>
   <div class="wrap">
     <a class="logo" href="#" aria-label="Деньги до курантов, наверх"><span class="logo-mark" aria-hidden="true"></span>До курантов</a>
     <a class="btn btn-main js-buy" href="#pricing">План за <span data-cfg="price">990 ₽</span></a>
@@ -35,85 +37,110 @@
 </header>
 
 <main>
-<!-- ============ Герой ============ -->
-<section class="hero night" id="hero">
-  <div class="wrap">
-    <div class="hero-grid">
+<!-- ============ Герой: ночь, часы, табло ============ -->
+<section class="hero" id="hero">
+  <div class="hero-clock" aria-hidden="true"><div id="heroDial"></div></div>
+  <div class="wrap hero-in">
+    <p class="kicker rise"><span class="mono">(01)</span> Методика Андрея Харда</p>
+    <h1 class="hero-title"><span class="ln"><span>Деньги</span></span><span class="ln"><span>до&nbsp;<em>курантов</em></span></span></h1>
+    <div class="hero-row">
       <div>
-        <p class="kicker rise">Методика Андрея Харда</p>
-        <h1 class="rise">Деньги до&nbsp;<em>курантов</em></h1>
-        <p class="sub rise">7 дней продаж по своей базе: тем, кто уже покупал у тебя или спрашивал цену</p>
-        <p class="lead rise">Без рекламы, вебинаров и дожимов. Отвечаешь на 13 вопросов и получаешь предложение под декабрь, план по дням, готовые тексты сообщений и прогноз в рублях.</p>
+        <p class="sub rise">7 дней продаж по своей базе: тем, кто уже покупал у тебя или спрашивал цену. Без рекламы, вебинаров и дожимов.</p>
         <div class="ctas rise">
           <a class="btn btn-main js-buy" href="#pricing">Собрать план <span class="price" data-cfg="price">990 ₽</span></a>
           <a class="btn btn-ghost" href="#calc">Посчитать базу бесплатно</a>
         </div>
       </div>
-      <figure class="portrait rise">
+      <figure class="polaroid rise" aria-label="Андрей Хард">
+        <span class="tape t1" aria-hidden="true"></span><span class="tape t2" aria-hidden="true"></span>
         <img src="img/andrey-about.jpg" alt="Андрей Хард улыбается" width="720" height="720" fetchpriority="high">
-        <figcaption><b>Андрей Хард</b><span>Строил отделы продаж, провёл сотни переговоров, сделал ИИ-менеджера по продажам</span></figcaption>
+        <figcaption>Андрей Хард<span>строил отделы продаж</span></figcaption>
       </figure>
     </div>
-    <div class="clock rise">
-      <span class="clock-k">До курантов осталось</span>
+    <div class="hero-board rise">
+      <span class="mono">До курантов</span>
       <div id="heroBoard"></div>
     </div>
   </div>
 </section>
 
-<!-- ============ База оживает ============ -->
-<section class="scene" id="scene" aria-label="Пример: семь сообщений по своей базе">
+<!-- ============ Сюжет: 7 минут до полуночи ============ -->
+<section class="story" id="story" aria-label="Семь дней плана как семь минут до полуночи">
   <div class="stage" id="stage">
-    <div class="wrap scene-grid">
-      <div class="scene-copy">
-        <h2>Деньги, которые у&nbsp;тебя уже есть</h2>
-        <p class="lead">Так это выглядит на примере. Ира, мастер массажа лица, чек 15&nbsp;000&nbsp;₽. В декабре она лично написала семи клиенткам из своей базы.</p>
-        <div class="tally"><span class="mono">Пришло на карту</span><b><span id="tally">0</span>&nbsp;₽</b></div>
-        <p class="after" id="after">Семь сообщений, четыре оплаты, ноль рублей на рекламу. А в базе у Иры 120 человек.</p>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="wrap story-grid">
+      <div class="story-clock">
+        <div id="storyDial" aria-hidden="true"></div>
+        <div class="readout"><b id="readout">23:53</b><span id="readoutDay">день 1 из 7</span></div>
+        <button class="sound" type="button" id="sound" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path class="wave" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg><span>Звук курантов</span></button>
       </div>
-      <div class="phone" aria-hidden="true">
-        <div class="phone-top"><b>Чаты</b><span>декабрь</span></div>
-        <ol class="chats" id="chats">
-          <li class="ct" data-end="3" data-pay="15000"><span class="av" style="--h:24">О</span><div class="ct-main"><b>Ольга</b><span class="ct-note">брала курс в мае</span><span class="ct-reply">Ой, как вовремя. Давай, беру по старой цене</span></div><span class="ct-st"><i class="s1">отправлено</i><i class="s2">ответила</i><i class="s3">+15 000 ₽</i></span></li>
-          <li class="ct" data-end="2"><span class="av" style="--h:160">К</span><div class="ct-main"><b>Катя</b><span class="ct-note">брала в марте</span><span class="ct-reply">Спасибо, подумаю после праздников</span></div><span class="ct-st"><i class="s1">отправлено</i><i class="s2">ответила</i><i class="s3"></i></span></li>
-          <li class="ct" data-end="3" data-pay="15000"><span class="av" style="--h:330">С</span><div class="ct-main"><b>Света</b><span class="ct-note">брала в сентябре</span><span class="ct-reply">Хочу сертификат маме на Новый год</span></div><span class="ct-st"><i class="s1">отправлено</i><i class="s2">ответила</i><i class="s3">+15 000 ₽</i></span></li>
-          <li class="ct" data-end="1"><span class="av" style="--h:200">Н</span><div class="ct-main"><b>Ника</b><span class="ct-note">спрашивала цену в июле</span><span class="ct-reply"></span></div><span class="ct-st"><i class="s1">прочитано</i><i class="s2"></i><i class="s3"></i></span></li>
-          <li class="ct" data-end="3" data-pay="15000"><span class="av" style="--h:90">М</span><div class="ct-main"><b>Марина</b><span class="ct-note">спрашивала цену в августе</span><span class="ct-reply">Давай закреплю январь, оплачу сейчас</span></div><span class="ct-st"><i class="s1">отправлено</i><i class="s2">ответила</i><i class="s3">+15 000 ₽</i></span></li>
-          <li class="ct" data-end="3" data-pay="15000"><span class="av" style="--h:270">А</span><div class="ct-main"><b>Аня</b><span class="ct-note">брала в октябре</span><span class="ct-reply">Хочу ещё, и подругу приведу</span></div><span class="ct-st"><i class="s1">отправлено</i><i class="s2">ответила</i><i class="s3">+15 000 ₽</i></span></li>
-          <li class="ct" data-end="1"><span class="av" style="--h:120">Ю</span><div class="ct-main"><b>Юля</b><span class="ct-note">спрашивала в октябре</span><span class="ct-reply"></span></div><span class="ct-st"><i class="s1">прочитано</i><i class="s2"></i><i class="s3"></i></span></li>
-        </ol>
+      <div class="chapters" id="chapters">
+        <p class="story-k"><span class="mono">(02)</span> Каждый день плана — минута до полуночи</p>
+        <article class="ch" data-i="0"><span class="ch-t mono"><b>23:53</b> день 1</span><h2>Разбери базу</h2><p>Три списка: кто купил за полгода, кто раньше и кто спрашивал цену. Десять самых тёплых отметь первыми.</p>
+          <div class="notes"><div class="note list"><span class="tape" aria-hidden="true"></span><b>Купили за полгода</b><span>Ольга, май</span><span>Аня, октябрь</span><span>Света, сентябрь</span><span>Катя, март</span></div></div></article>
+        <article class="ch" data-i="1"><span class="ch-t mono"><b>23:54</b> день 2</span><h2>Первая волна: тёплые</h2><p>Пишешь лично тем, кто покупал за полгода. С именем, с вопросом о человеке и с поводом.</p>
+          <div class="notes"><div class="note out"><span class="tape" aria-hidden="true"></span>Ольга, привет! Ты брала у меня курс в мае, как сейчас? С января цена вырастет, до 31-го держу нынешнюю для своих.</div></div></article>
+        <article class="ch" data-i="2"><span class="ch-t mono"><b>23:55</b> день 3</span><h2>Вторая волна: остальные</h2><p>Тем, кто брал давно, и тем, кто спрашивал цену. Для них свои тексты, без «всем привет».</p>
+          <div class="notes"><div class="note out"><span class="tape" aria-hidden="true"></span>Марина, привет! Ты спрашивала про курс в августе. Пишу один раз: открыла январь по предоплате.</div></div></article>
+        <article class="ch" data-i="3"><span class="ch-t mono"><b>23:56</b> день 4</span><h2>Ответы</h2><p>Отвечаешь в тот же день. На «дорого» и «подумаю» в плане готовые слова без давления.</p>
+          <div class="notes"><div class="note in"><span class="tape" aria-hidden="true"></span>Ой, как вовремя. Беру по старой цене<i>+15 000 ₽</i></div><div class="note in"><span class="tape" aria-hidden="true"></span>Хочу сертификат маме на Новый год<i>+15 000 ₽</i></div></div></article>
+        <article class="ch" data-i="4"><span class="ch-t mono"><b>23:57</b> день 5</span><h2>Второе касание</h2><p>Тем, кто промолчал, одно короткое напоминание. Больше им не пишешь.</p>
+          <div class="notes"><div class="note in"><span class="tape" aria-hidden="true"></span>Давай закреплю январь, оплачу сейчас<i>+15 000 ₽</i></div></div></article>
+        <article class="ch" data-i="5"><span class="ch-t mono"><b>23:58</b> день 6</span><h2>Второе касание остальным</h2><p>То же для давних клиентов и тех, кто спрашивал. После этого база отдыхает.</p>
+          <div class="notes"><div class="note in"><span class="tape" aria-hidden="true"></span>Хочу ещё, и подругу приведу<i>+15 000 ₽</i></div></div></article>
+        <article class="ch" data-i="6"><span class="ch-t mono"><b>23:59</b> день 7</span><h2>Закрытие и друзья</h2><p>Тем, кто сказал «подумаю», последнее сообщение. Тем, кто купил, спасибо и просьба переслать другу.</p>
+          <div class="notes"><div class="note in"><span class="tape" aria-hidden="true"></span>Уже переслала Лене, она напишет<i>+15 000 ₽</i></div></div></article>
+        <article class="ch final-ch" data-i="7"><span class="ch-t mono"><b>00:00</b> 1 января</span><h2>С Новым годом</h2><p>Семь дней личных сообщений своей базе и ни рубля на рекламу. Так это выглядит у мастера с чеком 15&nbsp;000&nbsp;₽ и базой в 120 человек.</p></article>
       </div>
+    </div>
+    <div class="wrap tally-row">
+      <span class="mono">На карте</span><b><span id="tally">0</span>&nbsp;₽</b><span class="mono tally-ad">на рекламу 0&nbsp;₽</span>
     </div>
   </div>
 </section>
 
-<!-- ============ Почему декабрь ============ -->
-<section class="why night" id="why">
+<!-- ============ Почему не реклама ============ -->
+<section class="why" id="why">
   <div class="wrap">
-    <h2 class="rise">Реклама дорожает. Твоя база стоит 0&nbsp;₽</h2>
-    <p class="lead rise">Новых клиентов привлекать всё дороже, а люди, которые уже тебе платили, лежат в переписках и ждут повода. Декабрь и есть повод: подарки, цены, которые вырастут в январе, и желание закрыть год.</p>
-    <div class="stats">
-      <div class="stat rise"><b>+26%</b><p>подорожало привлечение клиента через онлайн-рекламу за год. Клик почти не вырос, люди просто дольше думают.</p><a href="https://allo.tochka.com/news/stoimost-cpa" target="_blank" rel="noopener">E-Promo Group через «Точку», июнь 2026</a></div>
-      <div class="stat rise"><b>+91%</b><p>выросли рекламные вложения малого и среднего бизнеса за 2025–2026 годы. Конкуренция за внимание растёт.</p><a href="https://secrets.tbank.ru/blogi-kompanij/lovushka-pervogo-kasaniya/" target="_blank" rel="noopener">Vitamin.tools через «Т-Бизнес секреты», июль 2026</a></div>
-      <div class="stat rise"><b>0&nbsp;₽</b><p>стоит написать человеку, который уже у тебя покупал. Нужны только повод и правильные слова.</p><span>Повод и слова есть в плане</span></div>
+    <p class="kicker dark rise"><span class="mono">(03)</span> Почему не реклама</p>
+    <h2 class="rise">Новый клиент дорожает. Старый ждёт повода</h2>
+    <div class="score">
+      <div class="sc rise"><b>+26%</b><div><p>подорожало привлечение клиента через онлайн-рекламу за год. Клик почти не вырос, люди просто дольше думают.</p><a href="https://allo.tochka.com/news/stoimost-cpa" target="_blank" rel="noopener">E-Promo Group через «Точку», июнь 2026</a></div></div>
+      <div class="sc rise"><b>+91%</b><div><p>выросли рекламные вложения малого и среднего бизнеса за 2025–2026 годы. За внимание дерутся всё больше.</p><a href="https://secrets.tbank.ru/blogi-kompanij/lovushka-pervogo-kasaniya/" target="_blank" rel="noopener">Vitamin.tools через «Т-Бизнес секреты», июль 2026</a></div></div>
+      <div class="sc rise"><b>0&nbsp;₽</b><div><p>стоит написать человеку, который уже у тебя покупал. Декабрь даёт повод: подарки, январский рост цен и желание закрыть год.</p></div></div>
     </div>
     <p class="punch rise">31 декабря — единственный дедлайн, который не&nbsp;надо придумывать.</p>
+  </div>
+</section>
+
+<!-- ============ Бесплатный расчёт: одна фраза ============ -->
+<section class="calc" id="calc">
+  <div class="wrap">
+    <p class="kicker dark rise"><span class="mono">(04)</span> Бесплатно, без регистрации</p>
+    <h2 class="rise">Сколько денег лежит в&nbsp;твоей базе</h2>
+    <form class="phrase rise" id="calcForm" novalidate>
+      <p>За полгода у меня купили <label><span class="sr">Купили за полгода, человек</span><input inputmode="numeric" autocomplete="off" name="recent" placeholder="40" size="4"></label> человек, раньше ещё <label><span class="sr">Купили раньше, человек</span><input inputmode="numeric" autocomplete="off" name="old" placeholder="60" size="4"></label>, а&nbsp;<label><span class="sr">Спрашивали цену и не купили, человек</span><input inputmode="numeric" autocomplete="off" name="leads" placeholder="150" size="4"></label> спрашивали цену и не купили. Мой средний чек <label><span class="sr">Средний чек, рублей</span><input inputmode="numeric" autocomplete="off" name="check" placeholder="15 000" size="7"></label>&nbsp;₽.</p>
+      <p class="err" id="calcErr" hidden>Впиши хотя бы одну группу людей и чек</p>
+      <button class="btn btn-ink" type="submit">Посчитать</button>
+    </form>
+    <div class="calc-res" id="calcRes" aria-live="polite"></div>
   </div>
 </section>
 
 <!-- ============ Что внутри ============ -->
 <section class="inside" id="inside">
   <div class="wrap">
-    <h2 class="rise">На выходе — план на 7 дней с&nbsp;готовыми словами</h2>
+    <p class="kicker dark rise"><span class="mono">(05)</span> Что внутри за 990 ₽</p>
+    <h2 class="rise">План на 7 дней с&nbsp;готовыми словами</h2>
     <div class="inside-grid">
       <ol class="parts">
-        <li class="rise"><b>Прогноз в рублях</b><span>Сколько реально собрать по твоей базе и чеку, сколько будет покупок и сколько сообщений писать в день.</span></li>
-        <li class="rise"><b>Предложение под декабрь</b><span>Главное и запасное: старая цена до 31-го, январь по предоплате, подарок близкому или закрытие бюджета для компаний.</span></li>
-        <li class="rise"><b>7 дней по датам</b><span>Что делать каждый день: кому писать, когда отвечать, когда напомнить и когда отпустить.</span></li>
-        <li class="rise"><b>Тексты сообщений</b><span>Для тех, кто покупал недавно, давно и только спрашивал. Первое и второе касание, кнопка «скопировать».</span></li>
-        <li class="rise"><b>Ответы на «дорого» и «подумаю»</b><span>Пять частых ответов клиента и что писать в ответ, чтобы не давить и не потерять.</span></li>
+        <li class="rise"><b>Прогноз в рублях</b><span>Сколько реально собрать по твоей базе и чеку и сколько сообщений писать в день.</span></li>
+        <li class="rise"><b>Предложение под декабрь</b><span>Старая цена до 31-го, январь по предоплате, подарок близкому или бюджет года для компаний.</span></li>
+        <li class="rise"><b>7 дней по датам</b><span>Кому писать, когда отвечать, когда напомнить и когда отпустить.</span></li>
+        <li class="rise"><b>Тексты сообщений</b><span>Для трёх групп базы, первое и второе касание, кнопка «скопировать».</span></li>
+        <li class="rise"><b>Ответы на «дорого»</b><span>И на «подумаю», «после праздников», «нет денег». Без давления.</span></li>
         <li class="rise"><b>Промпт для нейросети</b><span>Для самых важных клиентов: сообщение по вашей старой переписке.</span></li>
-        <li class="rise"><b>Счётчик до курантов</b><span>Отмечаешь, кому написал, кто ответил и кто оплатил. Видишь, сколько собрал и сколько дней осталось.</span></li>
+        <li class="rise"><b>Счётчик до курантов</b><span>Кому написал, кто ответил, кто оплатил, сколько собрал.</span></li>
       </ol>
       <div class="sheet-wrap rise">
         <div class="sheet-tilt" id="tilt">
@@ -126,113 +153,71 @@
   </div>
 </section>
 
-<!-- ============ Бесплатный расчёт ============ -->
-<section class="calc" id="calc">
-  <div class="wrap calc-grid">
-    <div>
-      <h2 class="rise">Сколько денег лежит в&nbsp;твоей базе</h2>
-      <p class="lead rise">Четыре цифры, примерно — нормально. Бесплатно и без регистрации. Полный план добавит предложение, тексты и расписание по дням.</p>
-    </div>
-    <form class="calc-card" id="calcForm" novalidate>
-      <label class="cf"><span>Купили за последние полгода</span><input inputmode="numeric" autocomplete="off" name="recent" placeholder="40"><small>чел.</small></label>
-      <label class="cf"><span>Купили раньше</span><input inputmode="numeric" autocomplete="off" name="old" placeholder="60"><small>чел.</small></label>
-      <label class="cf"><span>Спрашивали цену, не купили</span><input inputmode="numeric" autocomplete="off" name="leads" placeholder="150"><small>чел.</small></label>
-      <label class="cf"><span>Средний чек</span><input inputmode="numeric" autocomplete="off" name="check" placeholder="15 000"><small>₽</small></label>
-      <p class="err" id="calcErr" hidden>Впиши хотя бы одну группу людей и чек</p>
-      <button class="btn btn-main" type="submit">Посчитать</button>
-      <div class="calc-res" id="calcRes" aria-live="polite"></div>
-    </form>
-  </div>
-</section>
-
 <!-- ============ Андрей ============ -->
 <section class="who" id="who">
-  <div class="wrap who-grid">
-    <figure class="who-photo rise">
-      <img src="img/andrey-terrace.jpg" alt="Андрей Хард на террасе в Дананге" width="720" height="900" loading="lazy">
-    </figure>
-    <div>
-      <h2 class="rise">12 лет в<h2 class="rise">Я 12 лет продаю сам и&nbsp;учу продавать других</h2>nbsp;продажах: продавал сам и<h2 class="rise">Я 12 лет продаю сам и&nbsp;учу продавать других</h2>nbsp;строил отделы</h2>
-      <ul class="facts">
-        <li class="rise"><b>20 лет</b><span>первый бизнес, с первого месяца в плюсе. Работает до сих пор, Белгород</span></li>
-        <li class="rise"><b>1&nbsp;000&nbsp;000&nbsp;$+</b><span>сеть строительных магазинов, где я был партнёром</span></li>
-        <li class="rise"><b>37%</b><span>конверсии на холодном звонке у нашего голосового ИИ-менеджера по продажам. 95% людей не понимали, что говорят с ИИ</span></li>
-        <li class="rise"><b>25 человек</b><span>в ИИ-компании, которую я собрал без инвестиций. Сколково, заказчики с оборотом 170+ млрд</span></li>
-      </ul>
-      <div class="creed rise">
-        <h3>Мои правила продаж</h3>
-        <p>Я не люблю вебинары, дожимы и бесплатные созвоны. Продаёт не напор, а повод и личное слово. Поэтому в плане два касания на человека, настоящий дедлайн и ни одного «только сегодня».</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ Для кого ============ -->
-<section class="fit">
-  <div class="wrap">
-    <h2 class="rise">Кому зайдёт</h2>
-    <div class="fit-grid">
-      <div class="fit-col rise">
-        <h3>Делай, если</h3>
-        <ul>
-          <li>У тебя были клиенты, хотя бы 30 человек за всё время</li>
-          <li>Ты эксперт, мастер, студия, магазин или подрядчик</li>
-          <li>Декабрь пока тихий, а хочется закрыть год в плюсе</li>
-          <li>Неудобно писать старым клиентам и не знаешь, с чего начать</li>
-          <li>Не хочешь сливать деньги на рекламу перед праздниками</li>
-        </ul>
-      </div>
-      <div class="fit-col no rise">
-        <h3>Не трать время, если</h3>
-        <ul>
-          <li>Клиентов ещё не было: здесь работа с теми, кто уже есть</li>
-          <li>Ищешь, как сделать массовую рассылку на тысячи номеров</li>
-          <li>Готов писать только «всем привет, у нас акция»</li>
-          <li>До 31 декабря не найдёшь даже 30 минут в день</li>
-        </ul>
-      </div>
-    </div>
+  <figure class="who-photo">
+    <img src="img/andrey-terrace.jpg" alt="Андрей Хард на террасе в Дананге" width="720" height="900" loading="lazy">
+  </figure>
+  <div class="who-in">
+    <p class="kicker rise"><span class="mono">(06)</span> Кто это придумал</p>
+    <h2 class="who-name rise">Андрей <em>Хард</em></h2>
+    <dl class="facts">
+      <div class="rise"><dt>12 лет</dt><dd>в бизнесе. Первый бизнес в 20, с первого месяца в плюсе, работает до сих пор</dd></div>
+      <div class="rise"><dt>1&nbsp;000&nbsp;000&nbsp;$+</dt><dd>сеть строительных магазинов, где он был партнёром</dd></div>
+      <div class="rise"><dt>37%</dt><dd>конверсии на холодном звонке у его голосового ИИ-менеджера по продажам</dd></div>
+      <div class="rise"><dt>25</dt><dd>человек в ИИ-компании, собранной без инвестиций. Сколково</dd></div>
+    </dl>
+    <blockquote class="creed rise">«Я не люблю вебинары, дожимы и бесплатные созвоны. Продаёт не напор, а повод и личное слово. Два касания, и отпускаешь»</blockquote>
   </div>
 </section>
 
 <!-- ============ Цена ============ -->
 <section class="pricing" id="pricing">
   <div class="wrap">
-    <h2 class="rise">Одна оплата из базы окупает план в&nbsp;десять раз</h2>
+    <p class="kicker dark rise"><span class="mono">(07)</span> Цена</p>
     <div class="price-grid">
-      <div class="ticket rise">
-        <div class="in">
-          <h3>План до курантов</h3>
-          <div class="cost"><b data-cfg="price">990 ₽</b><span>Продажа закрывается <span data-cfg="closeDate">24 декабря</span>: позже 7 дней уже не влезают до курантов</span></div>
-          <ul>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>13 вопросов, 10 минут</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>Прогноз в рублях и предложение под декабрь</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>7 дней по датам и тексты для трёх групп базы</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>Ответы на «дорого», «подумаю», «после праздников»</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M4 12.5 9.5 18 20 6"/></svg>Счётчик денег до курантов и PDF</li>
-          </ul>
-          <a class="btn btn-main js-buy" href="#">Собрать план <span class="price" data-cfg="price">990 ₽</span></a>
-        </div>
+      <div class="price-main rise">
+        <b class="big-price" data-cfg="price">990 ₽</b>
+        <p class="price-why">Одна оплата из базы окупает план в десять раз. Продажа закрывается <span data-cfg="closeDate">24 декабря</span>: позже 7 дней уже не влезают до курантов.</p>
+        <ul class="ticks">
+          <li>13 вопросов, 10 минут</li>
+          <li>Прогноз в рублях и предложение под декабрь</li>
+          <li>7 дней по датам и тексты для трёх групп базы</li>
+          <li>Ответы на «дорого», «подумаю», «после праздников»</li>
+          <li>Счётчик денег до курантов и PDF</li>
+        </ul>
+        <a class="btn btn-main js-buy" href="#">Собрать план <span class="price" data-cfg="price">990 ₽</span></a>
       </div>
-      <div class="consult night rise">
+      <div class="consult rise">
+        <span class="mono">Для больших баз</span>
         <h3>Разбор с Андреем, 60 минут</h3>
-        <b class="big">15 000 ₽</b>
-        <p>Для тех, у кого база больше 300 человек или чек от 50&nbsp;000&nbsp;₽. Андрей смотрит твой план, усиливает предложение и вместе с тобой пишет первые десять сообщений самым важным клиентам.</p>
-        <div><div class="seats" id="seats" aria-label="Места в декабре"></div><p class="seats-t" id="seatsTxt">5 мест в декабре</p></div>
+        <b class="consult-price">15 000 ₽</b>
+        <p>Если в базе больше 300 человек или чек от 50&nbsp;000&nbsp;₽. Андрей смотрит твой план, усиливает предложение и вместе с тобой пишет первые десять сообщений самым важным клиентам.</p>
+        <div class="seats" id="seats" aria-label="Места в декабре"></div>
+        <p class="seats-t" id="seatsTxt">5 мест в декабре</p>
         <a class="btn btn-ghost js-consult" href="#">Записаться на разбор</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FAQ ============ -->
+<!-- ============ Кому и вопросы ============ -->
 <section class="faq">
-  <div class="wrap">
-    <h2 class="rise">Вопросы</h2>
+  <div class="wrap faq-grid">
+    <div>
+      <p class="kicker dark rise"><span class="mono">(08)</span> Кому зайдёт</p>
+      <ul class="fit rise">
+        <li>Были клиенты, хотя бы 30 человек за всё время</li>
+        <li>Эксперт, мастер, студия, магазин или подрядчик</li>
+        <li>Декабрь пока тихий, а хочется закрыть год в плюсе</li>
+        <li>Неудобно писать старым клиентам и непонятно, с чего начать</li>
+      </ul>
+      <p class="nofit rise">Не зайдёт, если клиентов ещё не было или нужна массовая рассылка на тысячи номеров.</p>
+    </div>
     <div class="faq-list">
       <details><summary>У меня маленькая база. Есть смысл?</summary><p>Если клиентов было 30 и больше, да. Посчитай бесплатно выше: при чеке от 5&nbsp;000&nbsp;₽ даже маленькая база обычно окупает план с первой оплаты.</p></details>
       <details><summary>Не хочу выглядеть навязчиво</summary><p>Поэтому здесь два сообщения на человека, лично и с настоящим поводом. Навязчиво — это рассылка «всем привет» и пять напоминаний. Этого в плане нет.</p></details>
-      <details><summary>Это нейросеть пишет тексты?</summary><p>Нет. Тексты и правила собраны по методике Андрея, план считается прямо на твоём телефоне, ответы никуда не уходят. Нейросеть нужна только по желанию: в плане есть промпт, чтобы сделать сообщение ещё личнее.</p></details>
+      <details><summary>Это нейросеть пишет тексты?</summary><p>Нет. Тексты и правила собраны по методике Андрея, план считается прямо на твоём телефоне, ответы никуда не уходят. Нейросеть по желанию: в плане есть промпт, чтобы сделать сообщение ещё личнее.</p></details>
       <details><summary>Подойдёт для бизнеса, который продаёт компаниям?</summary><p>Да. Для компаний план предложит закрыть бюджет этого года: в декабре у них остаются деньги, которые сгорят 31-го.</p></details>
       <details><summary>Что будет после оплаты?</summary><p>Придёт ссылка на план. Проходишь за 10 минут, план и счётчик сохраняются на телефоне, PDF можно скачать.</p></details>
       <details><summary>А если никто не купит?</summary><p>Прогноз — ориентир, а не обещание: итог зависит от предложения и того, как давно ты общался с базой. Но даже без оплат ты напомнишь о себе людям, которые тебя знают, и войдёшь в январь с тёплыми разговорами.</p></details>
@@ -241,19 +226,22 @@
 </section>
 
 <!-- ============ Финал ============ -->
-<section class="final night">
-  <div class="wrap">
-    <h2 class="rise">Пока бьют куранты, деньги уже на&nbsp;карте</h2>
-    <div id="finalBoard" class="rise"></div>
-    <div class="ctas rise">
-      <a class="btn btn-main js-buy" href="#">Собрать план <span class="price" data-cfg="price">990 ₽</span></a>
-      <a class="btn btn-ghost" href="#calc">Сначала посчитать базу</a>
+<section class="final" id="final">
+  <div class="wrap final-in">
+    <div id="finalDial" class="final-dial" aria-hidden="true"></div>
+    <div>
+      <h2 class="rise">Пока бьют куранты, деньги уже на&nbsp;карте</h2>
+      <div id="finalBoard" class="rise"></div>
+      <div class="ctas rise">
+        <a class="btn btn-main js-buy" href="#">Собрать план <span class="price" data-cfg="price">990 ₽</span></a>
+        <a class="btn btn-ghost" href="#calc">Сначала посчитать базу</a>
+      </div>
     </div>
-    <div class="foot">
-      <span>Андрей Хард, 2026</span>
-      <span><a href="https://www.instagram.com/hard_andrei/" target="_blank" rel="noopener">Instagram @hard_andrei</a> &nbsp; <a href="https://t.me/andry_hard" target="_blank" rel="noopener">Telegram</a></span>
-      <span>Прогноз — ориентир, а не гарантия дохода</span>
-    </div>
+  </div>
+  <div class="wrap foot">
+    <span>Андрей Хард, 2026</span>
+    <span><a href="https://www.instagram.com/hard_andrei/" target="_blank" rel="noopener">Instagram @hard_andrei</a> &nbsp; <a href="https://t.me/andry_hard" target="_blank" rel="noopener">Telegram</a></span>
+    <span>Прогноз — ориентир, а не гарантия дохода</span>
   </div>
 </section>
 </main>
