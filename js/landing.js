@@ -11,6 +11,7 @@
   $$('[data-cfg]').forEach((el) => { if (C[el.dataset.cfg]) el.textContent = C[el.dataset.cfg]; });
   $$('.js-buy').forEach((a) => { if (a.getAttribute('href') === '#') { a.href = C.buyUrl; a.target = '_blank'; a.rel = 'noopener'; } });
   $$('.js-consult').forEach((a) => { a.href = C.consultUrl; a.target = '_blank'; a.rel = 'noopener'; });
+  $$('.js-bot').forEach((a) => { a.target = '_blank'; a.rel = 'noopener'; });
   const seats = $('#seats');
   if (seats) {
     seats.innerHTML = Array.from({ length: C.seatsTotal }, (_, i) => `<i class="${i < C.seatsTaken ? 'taken' : ''}"></i>`).join('');
@@ -206,7 +207,8 @@
         <div>${lock}Тексты для трёх групп базы и ответы на «подумаю»</div>
         <div>${lock}7 дней по датам и счётчик денег до курантов</div>
       </div>
-      <a class="btn btn-ink" href="${DK.esc(C.buyUrl)}" target="_blank" rel="noopener">Собрать план <span class="price">${DK.esc(C.price)}</span></a></div>`;
+      <div class="res-ctas"><a class="btn btn-ink" href="${DK.esc(C.buyUrl)}" target="_blank" rel="noopener">Собрать план <span class="price">${DK.esc(C.price)}</span></a>
+      <a class="btn btn-ghost" href="${DK.esc(C.botUrl.replace('start=site', 'start=site_calc'))}" target="_blank" rel="noopener">Чек-лист в Telegram</a></div></div>`;
     res.setAttribute('tabindex', '-1'); res.focus({ preventScroll: true });
     res.scrollIntoView({ behavior: motion ? 'smooth' : 'auto', block: 'nearest' });
   });
